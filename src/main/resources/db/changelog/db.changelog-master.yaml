@@ -1,0 +1,129 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vdrobinskyi
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_of_birth
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sex
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nationality
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_of_work
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: current_position
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: position
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: abbreviation
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attribute
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parent_position
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: professional_level
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: employee_position_relation
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: current_position_employee
+                  type: varchar(255)
+              - column:
+                  name: full_name_employee
+                  type: varchar(255)
+              - column:
+                  name: id_position
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseColumnNames: full_name
+            baseTableName: employee
+            constraintName: fk_full_name_employee
+            referencedColumnNames: full_name_employee
+            referencedTableName: employee_position_relation
+        - addForeignKeyConstraint:
+            baseColumnNames: current_position
+            baseTableName: employee
+            constraintName: fk_current_position_employee
+            referencedColumnNames: current_position_employee
+            referencedTableName: employee_position_relation
+        - addForeignKeyConstraint:
+            baseColumnNames: id
+            baseTableName: position
+            constraintName: fk_id_position
+            referencedColumnNames: id_position
+            referencedTableName: employee_position_relation
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_position
+            baseTableName: position
+            constraintName: fk_parent_position_employee
+            referencedColumnNames: parent_position_employee
+            referencedTableName: employee_position_relation
+
