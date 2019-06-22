@@ -2,6 +2,8 @@ package software.jevera.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import software.jevera.dao.EmployeeRepository;
 import software.jevera.domain.Employee;
 import software.jevera.domain.dto.EmployeeDto;
@@ -12,8 +14,10 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 @RequiredArgsConstructor
+@Service
 public class EmployeeService {
 
+    @Autowired
     private EmployeeRepository employeeRepository;
 
     public Employee registration(EmployeeDto employeeDto){

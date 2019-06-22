@@ -3,10 +3,7 @@ package software.jevera.domain;
 import lombok.*;
 import software.jevera.service.position.ProfessionalityLevel;
 
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -14,6 +11,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of = "name")
+@Entity
+@Table(name = "position")
 public class Position {
 
     @Id
